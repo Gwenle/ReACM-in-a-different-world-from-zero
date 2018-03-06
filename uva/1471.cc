@@ -40,10 +40,11 @@ int main()
      //laji n^2 xiefa
      for(int i=0;i<k-1;i++)
       for(int j=i+1;j<k;j++)
-      {
-        ans=max(ans,g[i]+f[j]);
+      { 
+        if(A[j]>A[i])
+         ans=max(ans,g[i]+f[j]);
       }
-     printf("%d\n",ans-1);
+     printf("%d\n",ans);
    }
    return 0;
 }
