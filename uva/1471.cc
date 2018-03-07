@@ -1,7 +1,8 @@
 #include<cstdio>
-#include<set>
+#include<map>
 #include<algorithm>
 #include<cstring>
+#include<iostream>
 using namespace std;
 int A[200100];
 int g[200100];
@@ -37,13 +38,15 @@ int main()
      }
      int ans=0;
       
-     //laji n^2 xiefa
+     //laji n^2 xiefa TLE
+     /*
      for(int i=0;i<k-1;i++)
       for(int j=i+1;j<k;j++)
       { 
         if(A[j]>A[i])
          ans=max(ans,g[i]+f[j]);
       }
+     */
      printf("%d\n",ans);
    }
    return 0;
