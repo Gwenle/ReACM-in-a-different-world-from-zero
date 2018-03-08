@@ -47,6 +47,50 @@ int main()
          ans=max(ans,g[i]+f[j]);
       }
      */
+     map<int,int> ma;     
+     ma[A[0]]=g[0];
+     for(int i=1;i<k;i++)
+     {
+      if(A[i]>(ma.begin()->first))
+      {
+        auto a1=ma.lower_bound(A[i]);
+        a1--;
+        int b1=a1->second;
+        ans=max(ans,b1+f[i]);
+        // A[i],g[i] 
+        auto a2=ma.upper_bound(A[i]);
+        a2--;
+        if(g[i]>(a2->second))
+        {
+          if((a2->first)==A[i])
+            a2=ma.erase(a2);
+          else
+            a2++;
+          for(auto ap=a2;ap!=ma.end();)
+          {
+            if((ap->second)<=g[i])
+              ap=ma.erase(ap);
+            else 
+              break;//!!
+          }
+          ma[A[i]]=g[i];
+        }
+      }
+      else
+      {
+       for(auto ap=ma.begin();ap!=ma.end();)
+       {
+            if((ap->second)<=g[i])
+              ap=ma.erase(ap);
+            else 
+              break;//!!
+       }
+       if(ma.find(A[i])==ma.end())
+       {
+           ma[A[i]]=g[i];
+       }
+      }
+     }   
      printf("%d\n",ans);
    }
    return 0;
