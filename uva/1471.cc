@@ -2,11 +2,12 @@
 #include<map>
 #include<algorithm>
 #include<cstring>
-#include<iostream>
+//#include<fstream>
 using namespace std;
 int A[200100];
 int g[200100];
 int f[200100];
+//ofstream con("test.txt");
 int main()
 {
    int n;
@@ -90,8 +91,12 @@ int main()
            ma[A[i]]=g[i];
        }
       }
-     }   
+     }
+    if(ans!=0)   
      printf("%d\n",ans);
+    else
+     printf("1\n");
+     //con<<ans<<endl;
    }
    return 0;
 }
