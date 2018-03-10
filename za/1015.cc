@@ -1,6 +1,5 @@
 #include<cstdio>
 #include<map>
-#include<set>
 #include<cstring>
 using namespace std;
 int m[20010];
@@ -12,7 +11,6 @@ int main()
   while(T--)
   {
     memset(m,0,sizeof(T));
-    set<int> ma;//405
     map<int,int> mb;//2 405
     int n;
     scanf("%d",&n);
@@ -23,7 +21,7 @@ int main()
     {
       for(mk::reverse_iterator j=mb.rbegin();j!=mb.rend();j++)
       {
-        if(m[i]>(j->second))
+        if(m[i]>=(j->second))
         {
            int a=j->first+1;
            if(mb.find(a)==mb.end()||mb[a]>m[i])
