@@ -5,7 +5,7 @@ using namespace std;
 int bcj[maxs];
 void init()
 {
-  for(int i=0;i<=maxs-300;i++)
+  for(int i=0;i<=maxs-200;i++)
      bcj[i]=i;
 }
 int fint(int m)
