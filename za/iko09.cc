@@ -1,17 +1,15 @@
 #include<cstdio>
-#include<algorithm>
 using namespace std;
-#define maxs 150000+300
-int bcj[maxs];
+int bcj[160000];
 void init()
 {
-  for(int i=0;i<=maxs-200;i++)
+  for(int i=0;i<160000;i++)
      bcj[i]=i;
 }
 int fint(int m)
 {
   if(m!=bcj[m])
-    m=fint(bcj[m]); 
+   bcj[m]=fint(bcj[m]);
   return m;
 }
 void combine(int a,int b)
@@ -28,15 +26,14 @@ bool same(int a,int b)
 int main()
 {
   int N,K;
-  while(scanf("%d%d",&N,&K)==2)
+  scanf("%d%d",&N,&K);
+  int ans=0;
+  int D,X,Y;
+  init();
+  while(K--)
   {
-    int ans=0;
-    int D,X,Y;
-    init();
-    while(K--)
-    {
       scanf("%d%d%d",&D,&X,&Y);
-      if(X>N||Y>N)
+      if(X<=0||Y<=0||X>N||Y>N)
       {
         ans++;
         continue;
@@ -65,6 +62,5 @@ int main()
       }
     }
     printf("%d\n",ans);
-  }
   return 0;
 }
