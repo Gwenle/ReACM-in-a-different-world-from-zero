@@ -38,8 +38,8 @@ int main()
       {
         while(op.size()>1)
         {
-          int last=*op.end();
-          int next=*(op.end()-1);
+          int last=*(op.end()-1);
+          int next=*(op.end()-2);
           if(lk(last,i)<lk(next,last))
             op.pop_back();
           else
