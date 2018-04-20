@@ -10,7 +10,7 @@ int fint(int m)
 {
   if(m!=bcj[m])
    bcj[m]=fint(bcj[m]);
-  return m;
+  return bcj[m];
 }
 void combine(int a,int b)
 {
