@@ -20,8 +20,8 @@ int main()
    {
      double mak=0;
      vector<int> op;
-     memset(s,0,sizeof(0));
-     memset(d,0,sizeof(0));
+     memset(s,0,sizeof(s));
+     memset(d,0,sizeof(d));
      int L,t;
      scanf("%d%d",&L,&t);
      scanf("%s",d);
