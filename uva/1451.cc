@@ -3,9 +3,11 @@
 #include<cstring>
 #include<stack>
 #include<vector>
+#include<fstream>
 int s[100100];
 char d[100100];
 using namespace std;
+//ofstream con("test");
 inline double lk(int i,int j)
 {
    double dk=(double)(s[j]-s[i])/(j-i);
@@ -18,7 +20,6 @@ int main()
    int ans1,ans2;
    while(n--)
    {
-     double mak=0;
      vector<int> op;
      memset(s,0,sizeof(s));
      memset(d,0,sizeof(d));
@@ -26,21 +27,22 @@ int main()
      scanf("%d%d",&L,&t);
      scanf("%s",d);
      ans1=1;
-     ans2=L;
+     ans2=t;
      for(int i=1;i<=L;i++)
      {
        int j=d[i-1]-'0';
        s[i]=s[i-1]+j;
      }
+     double mak=0;
      if(t+1<=L)
      {
-      for(int i=t+1;i<=L;i++)
+      for(int i=t;i<=L;i++)
       {
         while(op.size()>1)
         {
           int last=*(op.end()-1);
           int next=*(op.end()-2);
-          if(lk(last,i)<lk(next,last))
+          if(lk(last,i-t)<lk(next,last))
             op.pop_back();
           else
             break;
@@ -53,7 +55,8 @@ int main()
         }
       }
      }
-     printf("%d %d\n",ans1,ans2);
+    printf("%d %d\n",ans1,ans2);
+   // con<<ans1<<" "<<ans2<<endl;
      /*
      for(int i=0;i<=L;i++)
        printf("%d",s[i]);
