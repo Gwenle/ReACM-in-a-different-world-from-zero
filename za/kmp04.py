@@ -7,12 +7,13 @@ def zhishu(m):
     i=i+1
  return True
 n=int(input())
-p=0
-while n!=0 :
- k=n
- while zhishu(k)==False :
-  k=k-1
- n=n-k
- p=p+1
+p=1
+if n!=2 and n%2==0 :
+ p=2
+elif zhishu(n)==False :
+ if zhishu(n-2) :
+   p=2
+ else :
+   p=3
 print(p)
   
