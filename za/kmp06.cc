@@ -8,8 +8,12 @@ ll ksm(ll a,ll b)
   while(b!=0)
   {
     if(b&1)
-     re=((re%vp)*(a%vp))%vp;
-    a=((a%vp)*(a%vp))%vp;
+     re=re*a;
+    if(re>vp)
+     re=re/10000000;
+    a=a*a;
+    if(a>vp)
+     a=a/10000000;
     b=b>>1;
   }
   return re;
@@ -23,11 +27,14 @@ int main()
      ll p;
      cin>>p;
      ll ans=ksm(p,p);
-     int k=1;
+     ll k=1;
      while(k<=ans)
       k*=10;
      k/=10;
-     cout<<ans/k<<endl;
+     if(k==0)
+      cout<<1<<endl;
+     else
+      cout<<ans/k<<endl;
    }
    return 0;
 }
