@@ -13,8 +13,12 @@ bool opos(ll o)
 {
   int p=b-1;
   ll tem=m[a-1];
+  if(o<m[a-1])
+   return false;
   for(int i=a-2;i>=0;i--)
   {
+    if(o<m[i])
+     return false;
     tem=tem+m[i];
     if(tem>o)
     {
