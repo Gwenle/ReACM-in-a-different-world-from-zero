@@ -4,90 +4,91 @@
 #include<stack>
 #include<cmath>
 using namespace std;
-int m[550];
+typedef long long ll;
+long long m[550];
+//first algorithm version is wrong
+//because maximum number of pages assigned to a single scriber cannot be calculated
+int a,b;
+bool opos(ll o)
+{
+  int p=b-1;
+  ll tem=m[a-1];
+  for(int i=a-2;i>=0;i--)
+  {
+    tem=tem+m[i];
+    if(tem>o)
+    {
+      p--;
+      tem=m[i]; 
+    }
+    if(p<0)
+     return false;
+  }
+  if(p>=0)
+     return true;
+  else
+     return false;
+}
 int main()
 {
   int n;
   scanf("%d",&n);
   while(n--)
   {
-     stack<int> z;
-     int a,b,sum=0;
-     scanf("%d%d",&a,&b);
-     for(int i=0;i<a;i++)
-     {
-       scanf("%d",&m[i]);
-       sum+=m[i];
-     }
-     double avg=(double)sum/b;
-     int kt=0,kf=0,p=b-1;
-     for(int i=0;i<a;i++)
-     {
-       kt=kt+m[i];
-       if(p>0&&kt>avg)
+    scanf("%d%d",&a,&b);
+    ll sum=0;
+    for(int i=0;i<a;i++)
+    {
+      scanf("%lld",&m[i]);
+      sum+=m[i];
+    }
+    ll avg=sum/b;
+    while(sum-avg>1)
+    {
+       ll ap=(avg+sum)/2;
+       if(opos(ap))
+        sum=ap;
+       else
+        avg=ap;
+    }
+    ll op=(opos(avg))? avg:sum;
+    stack<int> z;
+    ll at=m[a-1];
+    int q=b-1;
+    for(int i=a-2;i>=0&&q>0;i--)
+    {
+       if(q-1==i)
        {
-          p--;
-          if(i==0)
-          {
-            kf=kt;
-            kt=0;
-            continue;
-          }
-          double i1=fabs(kt-avg);
-          double i2=fabs(kt-m[i]-avg);
-          if(i1<=i2)
-          {
-            kf=max(kt,kf);
-            kt=0;
-          }
-          else
-          {
-            kf=max(kf,kt-m[i]);
-            kt=m[i];
-          }
+         z.push(i);
+         q--;
+         continue;
        }
-     }
-     kf=max(kf,kt);//maximum number of pages assigned to a single scriber
-     //printf("%d\n",kf);
-     p=b-1;
-     int vx=m[a-1];
-     int j=a-2;
-     while(j>=0&&p>0)
-     {
-       vx+=m[j];
-       if(p-1==j||vx>kf)
+       at+=m[i];
+       if(at>op)
        {
-         z.push(j);
-         p--;
-         vx=m[j];
+         z.push(i);
+         q--;
+         at=m[i];
        }
-       j--;
-     }
-     int t1=z.top();
-     z.pop();
-     for(int i=0;i<a;i++)
-     {
-       if(i!=0)
-        printf(" ");
-       printf("%d",m[i]);
-       if(i==t1)
-       {
-         printf(" /");
-         if(!z.empty())
-         {
-           t1=z.top();
+    }
+    int f=(z.empty())? a:z.top();
+    if(!z.empty()) z.pop();
+    for(int i=0;i<a;i++)
+    {
+      if(i!=0)
+       printf(" ");
+      printf("%lld",m[i]);
+      if(i==f)
+      { 
+        printf(" /");
+        if(!z.empty())
+        {
+           f=z.top();
            z.pop();
-         }
-       }
-     }
-     printf("\n");  
+        }
+      }
+    }
+    printf("\n");
   }
   return 0;
 }
-
-
-/* 
-test1 :
-6 3
-1 3 5 2 5 2
-*/
