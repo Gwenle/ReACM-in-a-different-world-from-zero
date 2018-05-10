@@ -6,7 +6,7 @@ typedef long long ll;
 ll m[5][67];
 ll qiuzhi(int k,int f)
 {
-  if(m[k][f]>0)
+  if(k<6&&m[k][f]>0)
    return m[k][f];
   ll p=(f%2==1)? 2*qiuzhi(k,f+1) : qiuzhi(k-1,f/2);
    return p; 
